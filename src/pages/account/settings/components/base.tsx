@@ -19,10 +19,10 @@ const validatorPhone = (
   callback: (message?: string) => void,
 ) => {
   if (!value[0]) {
-    callback('Please input your area code!');
+    callback('请输入区号!');
   }
   if (!value[1]) {
-    callback('Please input your phone number!');
+    callback('请输入手机号!');
   }
   callback();
 };

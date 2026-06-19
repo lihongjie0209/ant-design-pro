@@ -4,7 +4,7 @@ import type { ProLayoutProps } from '@ant-design/pro-components';
  * @name
  */
 const Settings: ProLayoutProps & {
-  logo?: string;
+  logo?: string | false;
 } = {
   navTheme: 'light',
   colorPrimary: '#1677ff',
@@ -13,8 +13,8 @@ const Settings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Ant Design Pro',
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  title: '',
+  logo: false,
   iconfontUrl: '',
   token: {
     // 参见ts声明，demo 见文档，通过token 修改样式

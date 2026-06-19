@@ -1,20 +1,17 @@
-import { Link, useIntl } from '@umijs/max';
+import { Link } from '@umijs/max';
 import { Button, Card, Result } from 'antd';
 import React from 'react';
 
 const Exception404: React.FC = () => {
-  const intl = useIntl();
   return (
     <Card variant="borderless">
       <Result
         status="404"
         title="404"
-        subTitle={intl.formatMessage({ id: 'pages.404.subTitle' })}
+        subTitle="Sorry, the page you visited does not exist."
         extra={
           <Link to="/" prefetch>
-            <Button type="primary">
-              {intl.formatMessage({ id: 'pages.404.buttonText' })}
-            </Button>
+            <Button type="primary">Back Home</Button>
           </Link>
         }
       />

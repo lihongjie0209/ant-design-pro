@@ -9,23 +9,6 @@ import routes from './routes';
 
 const { UMI_ENV = 'dev' } = process.env;
 
-// Compute commit hash: env vars take precedence, fall back to git at build time
-const commitHash =
-  process.env.COMMIT_HASH ||
-  process.env.CF_PAGES_COMMIT_SHA ||
-  (() => {
-    try {
-      return require('node:child_process')
-        .execSync('git rev-parse HEAD', {
-          stdio: ['ignore', 'pipe', 'ignore'],
-          encoding: 'utf-8',
-        })
-        .trim();
-    } catch {
-      return '';
-    }
-  })();
-
 /**
  * @name 使用公共路径
  * @description 部署时的路径，如果部署在非根目录下，需要配置这个变量
@@ -114,7 +97,7 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Ant Design Pro',
+  title: '',
   layout: {
     locale: true,
     ...defaultSettings,
@@ -136,8 +119,8 @@ export default defineConfig({
     // default zh-CN
     default: 'zh-CN',
     antd: true,
-    // default true, when it is true, will use `navigator.language` overwrite default
-    baseNavigator: true,
+    // false: don't auto-detect browser language, always use default
+    baseNavigator: false,
   },
   /**
    * @name antd 插件
@@ -214,23 +197,10 @@ export default defineConfig({
     include: ['src/pages/**/_mock.ts'],
     exclude: ['mock/requestRecord.mock.js'],
   },
-  utoopack: {
-    module: {
-      rules: {
-        '*.md': {
-          loaders: [{ loader: join(__dirname, 'md-raw-loader.cjs') }],
-          as: '*.js',
-        },
-      },
-    },
-  },
+  utoopack: {},
   requestRecord: {},
   exportStatic: {},
   define: {
     'process.env.CI': process.env.CI,
-    'process.env.COMMIT_HASH': commitHash,
-    __APP_VERSION__: require('./../package.json').version,
-    __UMI_VERSION__: require('@umijs/max/package.json').version,
-    __UTOO_VERSION__: require('@utoo/pack/package.json').version,
   },
 });

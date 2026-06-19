@@ -24,21 +24,16 @@ vi.mock('@/services/ant-design-pro/api', () => ({
 
 vi.mock('@/components', () => ({
   AvatarDropdown: () => null,
-  DocLink: () => null,
   ErrorBoundary: ({ children }: any) => children,
   Footer: () => null,
-  LangDropdown: () => null,
   OfflineBanner: () => null,
-  VersionDropdown: () => null,
 }));
 
 vi.mock('@ant-design/pro-components', () => ({
   SettingDrawer: () => null,
 }));
 
-vi.mock('@ant-design/icons', () => ({
-  LinkOutlined: () => null,
-}));
+vi.mock('@ant-design/icons', () => ({}));
 
 vi.mock('./requestErrorConfig', () => ({
   errorConfig: {},
